@@ -64,6 +64,53 @@ public class SinglyLinkedList {
 		size++;
 	}
 	
+	//Remove First element
+	public void removeFirst() {
+		if(size==0) {
+			System.out.println("List is empty");
+			return;
+		}
+		head = head.next;
+		size--;
+	}
+	
+	//Remove Last
+	public void removeLast() {
+		if(size==0) {
+			System.out.println("List is empty");
+			return;
+		}
+		if(size==1) {
+			head = null;
+			tail = null;
+			return;
+		}
+		Node prev = head;
+		for(int i=0; i<size-2; i++) {
+			prev = prev.next;
+		}
+		prev.next = null;
+		size--;
+	}
+	
+	//Remove the element at the specified index.
+	public void remove(int index) {
+		if(index == 0) {
+			removeFirst();
+			return;
+		}
+		if(index == size-1) {
+			removeLast();
+			return;
+		}
+		Node prev = head;
+		for(int i=0; i<index-1; i++) {
+			prev = prev.next;
+		}
+		prev.next = prev.next.next;
+		size--;
+	}
+	
 	//Returns the element at the specific index.
 	public int get(int index) {
 		if(index<0 || index> size-1) {
